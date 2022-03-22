@@ -1,0 +1,29 @@
+<div class="form-container-wel mat-elevation-z5" *ngIf="authServ.isLogged | async">
+    <h1>Bienvenido <span style="color: #DD1167;"> {{user.nombre}} </span></h1>
+    <table mat-table>
+        <tr mat-header-row>Contraseña</tr>
+        <td>{{msg}}</td>
+    </table>
+
+    <div class="form-container mat-elevation-z5" *ngIf="flag">
+        <form #changePwd="ngForm" (ngSubmit)="changePass()">
+
+        <mat-form-field class="margin-top">
+            <input matInput type="password" class="form-control" placeholder="Contraseña:" name="password" [(ngModel)]="user.password"
+                    #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched" required>
+            <mat-error class="text-danger" [class.d-none]="pwd.valid || pwd.untouched">Necesitas escribir una contraseña</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="margin-top">
+            <input matInput type="password" class="form-control" placeholder="Confirma tu contraseña:" name="cpassword" (ngModel)="user.password"
+                    #cpassword="ngModel" [class.is-invalid]="cpassword.invalid && cpassword.touched" required>
+            <small class="text-danger" [class.d-none]="(cpassword.value == pwd.value) || cpassword.untouched">Las contraseñas no coinciden</small>
+        </mat-form-field>
+
+        <div class="center margin-top">
+            <button mat-raised-button [disabled]="changePwd.form.invalid" type="submit" class="btn btn-info">Cambiar Contraseña</button>
+        </div>
+        
+        </form>
+    </div>
+</div>

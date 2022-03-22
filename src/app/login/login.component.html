@@ -1,0 +1,26 @@
+<div class="form-container mat-elevation-z5">
+    <h1>Iniciar Sesión</h1>
+    <form #loginform="ngForm" (ngSubmit)="login()">
+    <small class="text-danger">{{msg}}</small>
+    <mat-form-field class="margin-top">
+        <input matInput type="email" class="form-control" name="email" size="50" placeholder="Ingresa nombre de usuario" [(ngModel)]="user.email" 
+                #email="ngModel" [class.is-invalid]="email.invalid && email.touched" required>
+        <mat-error *ngIf="email.errors && (email.invalid && email.touched)">
+            <small class="text-danger" *ngIf="email.errors.required">Necesitas ingresar un correo o usuario válido</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Ingresa un correo válido</small>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="margin-top">
+        <input matInput type="password" class="form-control" placeholder="Ingresa tu contraseña" name="pwd" [(ngModel)]="user.password"
+                #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched" required>
+        <mat-error class="text-danger" [class.d-none]="pwd.valid || pwd.untouched">Necesitas escribir una contraseña</mat-error>
+    </mat-form-field>
+
+    <div class="center margin-top">
+        <button mat-raised-button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Ingresar</button>
+    </div>
+    
+    </form>
+    <small class="center margin-top">¿No tienes cuenta? <a class="sign-up-link" [routerLink]="['/registrarusuario']">Regístrate</a></small>
+</div>

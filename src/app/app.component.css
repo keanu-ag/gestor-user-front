@@ -1,0 +1,15 @@
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 32px;
+}
+
+.nav{
+  height: 40px;
+  max-width: auto;
+
+  background-color: #3B9DBC;
+  border-radius: 6px;
+}
